@@ -29,7 +29,6 @@ import com.google.common.collect.Lists;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Writer;
 import java.util.logging.Logger;
@@ -44,8 +43,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jenny Murphy - http://google.com/+JennyMurphy
  */
-public class NotifyServlet extends HttpServlet {
-  private static final Logger LOG = Logger.getLogger(NotifyServlet.class.getSimpleName());
+public class Notify2Servlet extends HttpServlet {
+  private static final Logger LOG = Logger.getLogger(Notify2Servlet.class.getSimpleName());
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -90,6 +89,21 @@ public class NotifyServlet extends HttpServlet {
     Mirror mirrorClient = MirrorClient.getMirror(credential);
 
 
+
+
+
+
+
+
+	  TimelineItem timelineItem3 = new TimelineItem();
+	  timelineItem3.setNotification(new NotificationConfig().setLevel("DEFAULT"));
+	  timelineItem3.setText("Haha, you're lucky! You got it!");
+	  MirrorClient.insertTimelineItem(credential, timelineItem3);
+	  LOG.warning("haha");
+
+
+
+
     if (notification.getCollection().equals("locations")) {
       LOG.info("Notification of updated location");
       Mirror glass = MirrorClient.getMirror(credential);
@@ -101,7 +115,7 @@ public class NotifyServlet extends HttpServlet {
           credential,
           new TimelineItem()
               .setText("Java Quick Start says you are now at " + location.getLatitude()
-                  + " by " + location.getLongitude())
+		              + " by " + location.getLongitude())
               .setNotification(new NotificationConfig().setLevel("DEFAULT")).setLocation(location)
               .setMenuItems(Lists.newArrayList(new MenuItem().setAction("NAVIGATE"))));
 
@@ -133,8 +147,37 @@ public class NotifyServlet extends HttpServlet {
         // patch method here.
         mirrorClient.timeline().patch(notification.getItemId(), itemPatch).execute();
 
-      } else {
-        LOG.warning("I don't know what to do with this notification, so I'm ignoring it.");
+      } else
+
+      if (notification.getUserActions().contains(new UserAction().setType("hunt"))
+		      && timelineItem.getAttachments() != null && timelineItem.getAttachments().size() > 0) {
+	          LOG.info("ok, hunting");
+      }   else
+
+      if (notification.getUserActions().contains(new UserAction().setType("drill"))
+		      && timelineItem.getAttachments() != null && timelineItem.getAttachments().size() > 0) {
+	      LOG.info("ok, drilling");
+      }   else
+
+
+
+      {
+        LOG.warning("prd I don't know what to do with this notification, so I'm ignoring it.");
+
+
+
+
+
+
+
+	      TimelineItem timelineItem2 = new TimelineItem();
+	      timelineItem2.setNotification(new NotificationConfig().setLevel("DEFAULT"));
+	      timelineItem2.setText("Haha, you're lucky! You got it!");
+	      MirrorClient.insertTimelineItem(credential, timelineItem2);
+	      LOG.warning("haha");
+
+
+
       }
     }
   }

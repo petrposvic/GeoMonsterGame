@@ -59,7 +59,7 @@ public class NewUserBootstrapper {
     try {
       // Subscribe to timeline updates
       Subscription subscription =
-          MirrorClient.insertSubscription(credential, WebUtil.buildUrl(req, "/notify"), userId,
+          MirrorClient.insertSubscription(credential, WebUtil.buildUrl(req, "/notify2"), userId,
               "timeline");
       LOG.info("Bootstrapper inserted subscription " + subscription
           .getId() + " for user " + userId);

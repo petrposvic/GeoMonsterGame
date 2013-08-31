@@ -33,8 +33,8 @@ public class Pokus2Servlet extends HttpServlet {
 
 	// TODO
 	private static MonsterDefinition[] MONSTER_DEFS = {
-				new MonsterDefinition("Poring", 12f, 10.1f, "/static/images/zviratko1.png"),
-				new MonsterDefinition("Dirty Wolf", 50f, 50.1f, "/static/images/zviratko2.png")
+				new MonsterDefinition("Poring", 12f, 10.1f, "https://geomonstergame.appspot.com/static/images/zviratko1.png"),
+				new MonsterDefinition("Dirty Wolf", 50f, 50.1f, "https://geomonstergame.appspot.com/static/images/zviratko2.png")
 	};
 
 	// TODO
